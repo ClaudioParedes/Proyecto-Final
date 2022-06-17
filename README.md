@@ -1,3 +1,3 @@
-# P-R-O-Y-E-C-T-O--F-I-N-A-L
+# PROYECTO FINAL
 
 La carpeta DocsProyecto no son parte del Proyecto Final, se mantendran visibles durante el desarrollo del mismo.

@@ -1,0 +1,3 @@
+INSTALACION
+npm i express-handlebars jsonwebtoken express-fileupload pg bcrypt bootstrap
+npm i nodemon -D

@@ -8,5 +8,5 @@ CREATE TABLE registro (
 	FOREIGN KEY (id_trabajador) REFERENCES trabajador(id_trabajador),
 	FOREIGN KEY (id_area) REFERENCES area(id_area),
 	FOREIGN KEY (id_nivel) REFERENCES nivel(id_nivel),
-	FOREIGN KEY (id_actividad) REFERENCES actividad(id_actividad),
+	FOREIGN KEY (id_actividad) REFERENCES actividad(id_actividad)
 );

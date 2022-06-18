@@ -6,5 +6,5 @@ CREATE TABLE trabajador (
     fecha_nacimiento DATE,
     cargo VARCHAR(20),
     foto VARCHAR(100),
-	PRIMARY KEY(id_trabajador),
+	PRIMARY KEY(id_trabajador)
 );

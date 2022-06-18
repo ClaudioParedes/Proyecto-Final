@@ -4,5 +4,5 @@ CREATE TABLE contrato (
     nro_contrato INT,
     nro_contrato_interno INT,
     fecha_ingreso DATE,
-	PRIMARY KEY(id_actividad),
+	PRIMARY KEY(id_actividad)
 );

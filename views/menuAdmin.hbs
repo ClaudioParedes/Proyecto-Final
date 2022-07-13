@@ -1,0 +1,48 @@
+<div class="row container px-sm-5 py-5 justify-content-center mx-auto">
+    <div class="my-1"><h1>Administración</h1></div>
+<hr />
+    <form class="border shadow col-12 col-md-10 col-lg-9">
+    
+        <div class="container">
+            <div class="row align-items-center my-5">
+                
+                <div class="col-12 col-md-4">
+                     <button id="listaTrabajadores" type="button" class="btn btn-lg btn-outline-warning">Listar Trabajadores</button>
+                </div>
+
+                <div class="col-12 col-md-4">
+                     <button id="adminTrabajadores" type="button" class="btn btn-lg btn-outline-warning">Administrar Trabajadores</button>
+                </div>
+
+                <div class="col-12 col-md-4">
+                     <button id="sectorActividades" type="button" class="btn btn-lg btn-outline-warning">Sector y Actividades</button>
+                </div>
+                                  
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    const listaTrabajadores = document.getElementById("listaTrabajadores")
+    listaTrabajadores.addEventListener("click", async (e) => {
+        e.preventDefault()
+        window.location = `/listaTrabajadores`
+    });
+</script>
+
+<script>
+    const adminTrabajadores = document.getElementById("adminTrabajadores")
+    adminTrabajadores.addEventListener("click", async (e) => {
+        e.preventDefault()
+        window.location = `/adminTrabajador`
+    });
+</script>
+
+<script>
+    const sectorActividades = document.getElementById("sectorActividades")
+    sectorActividades.addEventListener("click", async (e) => {
+        e.preventDefault()
+        window.location = `/sectActividades`
+    });
+</script>

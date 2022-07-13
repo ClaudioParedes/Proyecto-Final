@@ -1,0 +1,18 @@
+<nav class="navbar navbar-dark bg-gradient py-2 shadow" style = "background-color: #1c0c54">
+  <div class="container-fluid">
+    <h1>
+       <a class="navbar-brand"><div><h1>BORMAX</h1></div> <div>Ingeniería y Automatización</div></a>
+    </h1>
+    <form class="d-flex">
+       <button id="ingreso" class="btn btn-outline-warning" type="submit">Ingresar</button>
+    </form>
+  </div>
+</nav>
+
+<script>
+    const ingreso = document.getElementById("ingreso")
+    ingreso.addEventListener("click", async (e) => {
+        e.preventDefault()
+        window.location = `/inicioSesion`
+    });
+</script>

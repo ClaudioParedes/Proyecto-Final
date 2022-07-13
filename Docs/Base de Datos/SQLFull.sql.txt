@@ -1,0 +1,62 @@
+CREATE TABLE actividad (
+	id_actividad VARCHAR(50),
+    nombre VARCHAR(50),
+	PRIMARY KEY(id_actividad)
+);
+
+CREATE TABLE nivel (
+	id_nivel VARCHAR(50),
+    nombre VARCHAR(50),
+	PRIMARY KEY(id_nivel)
+);
+
+CREATE TABLE area (
+	id_area VARCHAR(50),
+	PRIMARY KEY(id_area)
+);
+
+CREATE TABLE contrato (
+	id_contrato VARCHAR(50),
+    empresa VARCHAR(15),
+    nro_contrato INT,
+    nro_contrato_interno INT,
+    fecha_ingreso DATE,
+	PRIMARY KEY(id_contrato)
+);
+INSERT INTO contrato(id_contrato,empresa,nro_contrato,nro_contrato_interno,fecha_ingreso) VALUES
+('11111','Bormax',9999,0000,'02-02-2000')
+
+CREATE TABLE trabajador (
+	id_trabajador SERIAL,
+	id_contrato VARCHAR(50),
+	rut VARCHAR(13),
+	nombre VARCHAR(15),
+	apellido VARCHAR(15),
+    fecha_nacimiento DATE,
+    cargo VARCHAR(20),
+    foto VARCHAR(100),
+	PRIMARY KEY(id_trabajador),
+	FOREIGN KEY (id_contrato) REFERENCES contrato(id_contrato)
+
+);
+
+INSERT INTO trabajador(id_trabajador,id_contrato,rut,nombre,apellido,fecha_nacimiento,cargo,foto)
+VALUES('1','11111','141419439','Claudio','Paredes','01-01-1999','Ingeniero','Foto');  
+
+CREATE TABLE registro (
+	id_registro VARCHAR(50),
+	id_trabajador VARCHAR(50),
+	id_area VARCHAR(50),
+	id_nivel VARCHAR(50),
+	id_actividad VARCHAR(50),
+	PRIMARY KEY(id_registro),
+	FOREIGN KEY (id_trabajador) REFERENCES trabajador(id_trabajador),
+	FOREIGN KEY (id_area) REFERENCES area(id_area),
+	FOREIGN KEY (id_nivel) REFERENCES nivel(id_nivel),
+	FOREIGN KEY (id_actividad) REFERENCES actividad(id_actividad)
+
+
+SELECT * FROM trabajador
+select * from contrato
+
+drop table skaters

@@ -1,0 +1,80 @@
+<div class="row container px-sm-5 py-5 justify-content-center mx-auto">
+ <div class="my-3"><h1>Administrar Sector y Actividades</h1></div>
+ <hr />
+ <div class="container">
+          <div class="row align-items-right my-1">
+              <div class="col-12 col-md-6">
+                <button id="volver" type="submit" class="btn btn-primary">Volver</button>
+               </div>
+         </div>
+</div>
+<div class="border shadow col-12 col-lg-4">
+       
+      <div class="container">
+          <div class="row align-items-center my-5">
+              <div class="col-12 col-md-6">
+                  <h5>ACTIVIDAD</h5>
+              </div>
+
+<div class="container input-group col-12 col-md-6">
+    <input type="text" id="txtAgregarActividad" class="form-control" placeholder="Ingrese Nueva Actividad">
+    <button type="submit" id="btnAgregarActividad"  class="btn btn btn-outline-primary shadow px-">Agregar</button>
+</div>
+<div class="container input-group col-12 col-md-6 mt-1"> 
+    <input type="text" id="txtEliminarActividad" class="form-control" placeholder="Actividad Desplegada" disabled>
+    <button type="submit" id="btnEliminarActividad" class="btn btn btn-outline-danger shadow">Eliminar</button>  
+</div>
+          </div>
+      </div>
+ </div>
+
+ <div class="border shadow col-12 col-lg-4">
+       
+      <div class="container">
+          <div class="row align-items-center my-5">
+              <div class="col-12 col-md-6">
+                  <h5>NIVEL</h5>
+              </div>
+<div class="container input-group col-12 col-md-6">
+
+    <input type="text" id="txtAgregarNivel" class="form-control" placeholder="Ingrese Nuevo Nivel">
+    <button type="submit" id="btnAgregarNivel" class="btn btn btn-outline-primary shadow px-">Agregar</button>
+</div>
+<div class="container input-group col-12 col-md-6 mt-1"> 
+        <input type="text" id="txtEliminarNivel" class="form-control" placeholder="Nivel Desplegado" disabled>
+        <button type="submit" id="btnEliminarNivel" class="btn btn btn-outline-danger shadow">Eliminar</button>  
+</div>
+
+          </div>
+      </div>
+ </div>
+
+ <div class="border shadow col-12 col-lg-4">
+       <div class="container">
+          <div class="row align-items-center my-5">
+              <div class="col-12 col-md-6">
+                  <h5>ÁREA</h5>
+              </div>
+<div class="container input-group col-12 col-md-6">
+
+    <input type="text" id="txtAgregarArea" class="form-control" placeholder="Ingrese Nueva Área">
+    <button type="submit" id="btnAgregarArea" class="btn btn btn-outline-primary shadow px-">Agregar</button>
+</div>
+<div class="container input-group col-12 col-md-6 mt-1"> 
+        <input type="text" id="txtEliminarArea" class="form-control" placeholder="Área Desplegada" disabled>
+        <button type="submit" id="btnEliminarArea" class="btn btn btn-outline-danger shadow">Eliminar</button>  
+</div>
+</div>     
+
+          </div>
+      </div>
+ </div>
+</div>
+
+<script>
+    const volver = document.getElementById("volver")
+    volver.addEventListener("click", async (e) => {
+        e.preventDefault()
+        window.location = `/menuAdmin`
+    });
+</script>

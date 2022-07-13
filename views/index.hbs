@@ -1,0 +1,86 @@
+<div class="row container px-sm-5 py-5 justify-content-center mx-auto">
+  <div class="my-1"><h1>Datos Personal</h1></div>
+  <hr />
+<div class="border shadow col-12 col-md-10 col-lg-9">
+
+      <div class="col-12 col-md-6 pt-1">
+      <label class="form-label pt-4">RUT</label>
+      <input type="text" id="inputRut" class="form-control" placeholder="Ingrese RUT">
+      <div class="pt-2">
+         <button type="submit" class="btn btn-primary" onclick="buscarTrabajador()" >Buscar</button>
+      </div>
+      </div>
+      <div class="container">
+          <div class="row align-items-center my-5">
+              <div class="col-12 col-md-6">
+                  <h5>NOMBRE</h5>
+                <input type="text" id="nombre" class="form-control" placeholder="Nombre" disabled>
+              </div>
+
+              <div class="col-12 col-md-6">
+                  <h5>APELLIDO</h5>
+                 <input type="text" id="apellido" class="form-control" placeholder="Apellido" disabled>        
+              </div>
+          </div>
+      </div>
+      <div class="container">
+          <div class="row align-items-center my-5">
+              <div class="col-12 col-md-6">
+                  <h5>EMPRESA</h5>
+                <input type="text" id="empresa" class="form-control" placeholder="Empresa" disabled>
+              </div>
+
+              <div class="col-12 col-md-6">
+                  <h5>CONTRATO</h5>
+                 <input type="text" id="contrato" class="form-control" placeholder="Contrato" disabled>
+              </div>
+          </div>
+     </div>
+<div class="container">
+          <div class="row align-items-right my-5">
+              <div class="col-4">
+                <button id = "siguiente" type="submit" class="btn btn-primary">Siguiente</button>
+                
+              </div>
+
+         </div>
+</div>
+</div>
+</div>
+
+<script>
+  let id_trabajador;
+
+async function buscarTrabajador(){
+  try{
+  const rut = document.getElementById("inputRut").value;
+  const { data } = await axios.get("/api/trabajadores/" + rut);
+  document.getElementById("nombre").value = data.nombre;
+  document.getElementById("apellido").value = data.apellido;
+  document.getElementById("empresa").value = data.empresa;
+  document.getElementById("contrato").value = data.id_contrato;
+  id_trabajador = data.id_trabajador;
+} catch(error) {
+  alert(error.response.data.error)
+  }
+}
+</script>
+
+<script>
+    const siguiente = document.getElementById("siguiente")
+    siguiente.addEventListener("click", async (e) => {
+localStorage.setItem("trabajador", JSON.stringify({ 
+  
+  id_trabajador: id_trabajador,
+  nombre: document.getElementById("nombre").value,
+  apellido: document.getElementById("apellido").value,
+  empresa: document.getElementById("empresa").value,
+  contrato: document.getElementById("contrato").value,
+  
+
+ 
+ }))
+ 
+   window.location = `/actividad`
+    });
+</script>

@@ -1,0 +1,102 @@
+<div class="container px-5 py-5">
+<div class="my-1"><h1>Resumen Registro</h1></div>
+       <hr />
+
+    <div class="container-fluid border shadow">
+    {{!-- <div class="col-4 pt-1">
+        <label class="form-label">ID Registro</label>
+         <input type="text" id="registro" class="form-control" placeholder=`"${local.storage.trabajador.empresa}"`>
+      </div> --}}
+      <div class="container">
+          <div class="row align-items-center my-5">
+              <div class="col-4">
+                  <h5>NOMBRE</h5>
+                <input type="text" id="nombre" class="form-control" placeholder="Nombre" disabled>
+              </div>
+
+              <div class="col-4">
+                  <h5>ACTIVIDAD</h5>
+                 <input type="text" id="actividad" class="form-control" placeholder="Actividad" disabled>        
+              </div>
+
+              <div class="col-4">
+                  <h5>EMPRESA</h5>
+                 <input type="text" id="empresa" class="form-control" placeholder="Empresa" disabled>        
+              </div>
+          </div>
+      </div>
+      <div class="container">
+          <div class="row align-items-center my-5">
+              <div class="col-4">
+                   <h5>NIVEL</h5>
+                   <input type="text" id="nivel" class="form-control" placeholder="Nivel" disabled>
+                     
+              </div>
+
+              <div class="col-4">
+                  <h5>AREA</h5>
+                 <input type="text" id="area" class="form-control" placeholder="Contrato" disabled>
+              </div>
+             
+     </div>
+<div class="container">
+          <div class="row align-items-right my-5">
+              <div class="col-4">
+                <button id="anterior" class="btn btn-primary">Anterior</button>
+                <button id="registrar" class="btn btn-primary">Registrar</button>
+              </div>
+         </div>
+</div>
+     </div>
+</div>
+
+<script>
+  const trabajador =  JSON.parse(localStorage.getItem('trabajador'));
+  console.log(trabajador);
+  document.getElementById('nombre').value = trabajador.nombre+trabajador.apellido
+  document.getElementById('empresa').value = trabajador.empresa
+
+  const actividad =  JSON.parse(localStorage.getItem('actividad'));
+  console.log(actividad);
+  document.getElementById('nivel').value = actividad.nivel
+  document.getElementById('actividad').value = actividad.actividad
+  document.getElementById('area').value = actividad.area
+</script>
+
+
+<script>
+   const agregarReg = document.getElementById("registrar")
+
+    agregarReg.addEventListener("click", async (e) => {
+        e.preventDefault()
+        const trabajador =  JSON.parse(localStorage.getItem('trabajador'));
+        const actividad =  JSON.parse(localStorage.getItem('actividad'));
+
+        const payLoad = { 
+            id_trabajador: trabajador.id_trabajador,
+            id_nivel: actividad.id_nivel,
+            id_area: actividad.id_area,
+            id_actividad: actividad.id_actividad,
+         }  
+        // trabajador = { registro, nombre, actividad, empresa, nivel, area, contrato }
+           const { data  } = await axios.post("api/registros", payLoad)
+           alert("Registrado")
+           window.location = "/"
+      });
+</script>
+
+<script>
+    const siguiente = document.getElementById("siguiente")
+    siguiente.addEventListener("click", async (e) => {
+        e.preventDefault()
+        window.location = `/resumen`
+    });
+</script>
+
+<script>
+    const anterior = document.getElementById("anterior")
+    anterior.addEventListener("click", async (e) => {
+        e.preventDefault()
+        window.location = `/actividad`
+    });
+</script>

@@ -18,7 +18,7 @@ apiRouter.get("/trabajadores/:rut", async (req, res) => {
         
         return res.status(404).send("Trabajador no Encontrado")
     }
- 
+    
     res.send(trabajador);
 }catch(e){
     res.status(500).send(e);

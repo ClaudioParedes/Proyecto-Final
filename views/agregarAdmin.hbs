@@ -1,0 +1,66 @@
+<div class="row container px-sm-5 py-5 justify-content-center mx-auto">
+<div class="my-3"><h1>Registro Administradores</h1></div>
+<div class="py-2">
+  <hr />
+  <div>
+    <div class="form-group row w-50 m-auto">
+      <div class="form-group col-12 col-sm-6">
+        <label>Email</label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          class="form-control m-auto"
+        />
+      </div>
+      <div class="form-group col-12 col-sm-6">
+        <label>Nombre</label>
+        <input
+          id="nombre"
+          type="text"
+          name="nombre"
+          class="form-control m-auto"
+        />
+      </div>
+      <div class="form-group col-12 col-sm-6">
+        <label>Password</label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          class="form-control m-auto"
+        />
+      </div>
+      
+    </div>
+    </div>
+    <div class="col-4">
+          <button id="volverMod" type="button" class="btn btn-primary">Volver</button>
+          <button onclick="agregarAdmin()" class="btn btn-primary my-3">Agregar</button>
+         
+      </div>
+    
+    </div>
+  <hr />
+</div>
+
+ <script>
+  async function agregarAdmin() {
+    try {
+      const email = document.getElementById('email').value;
+      const nombre = document.getElementById('nombre').value;
+      const password = document.getElementById('password').value;
+      let payload = { email, nombre, password }
+      const { data } = await axios.post("/api/registro", payload);
+   console.log(nombre)
+    } catch (e){console.log("Errrorr")}
+  }
+</script>
+
+<script>
+    const volverMod = document.getElementById("volverMod")
+    volverMod.addEventListener("click", async (e) => {
+        e.preventDefault()
+        window.location = `/menuAdmin`
+    });
+</script>

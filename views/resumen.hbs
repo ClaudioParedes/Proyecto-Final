@@ -52,10 +52,12 @@
 
 <script>
   const trabajador =  JSON.parse(localStorage.getItem('trabajador'));
+  console.log(trabajador);
   document.getElementById('nombre').value = trabajador.nombre+trabajador.apellido
   document.getElementById('empresa').value = trabajador.empresa
 
   const actividad =  JSON.parse(localStorage.getItem('actividad'));
+  console.log(actividad);
   document.getElementById('nivel').value = actividad.nivel
   document.getElementById('actividad').value = actividad.actividad
   document.getElementById('area').value = actividad.area
@@ -69,12 +71,14 @@
         e.preventDefault()
         const trabajador =  JSON.parse(localStorage.getItem('trabajador'));
         const actividad =  JSON.parse(localStorage.getItem('actividad'));
+
         const payLoad = { 
             id_trabajador: trabajador.id_trabajador,
             id_nivel: actividad.id_nivel,
             id_area: actividad.id_area,
             id_actividad: actividad.id_actividad,
          }  
+        // trabajador = { registro, nombre, actividad, empresa, nivel, area, contrato }
            const { data  } = await axios.post("api/registros", payLoad)
            alert("Registrado")
            window.location = "/"

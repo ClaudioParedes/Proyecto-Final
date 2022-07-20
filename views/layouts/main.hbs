@@ -10,8 +10,17 @@
   </head>
   {{>navbar}}
   <body>
+
+  
+
     {{{ body }}}
     <script src="/axios/axios.min.js" ></script>
+
+    <script>
+axios.defaults.headers.common['Authorization'] = localStorage.getItem("token");
+    </script>
+
+    {{>VerifyAuth}}
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
   </body>
   {{>footer}}

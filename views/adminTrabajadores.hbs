@@ -1,17 +1,17 @@
 <div class="row container px-sm-5 py-5 justify-content-center mx-auto">
     <div class="my-1"><h1>Administrar Trabajadores</h1></div>
     <hr />
-    <form class="border shadow col-12 col-md-10 col-lg-9">
+    <div class="border shadow col-12 col-md-10 col-lg-9">
       <div class="container">
           <div class="row align-items-center my-5">
                <div class="col-12 col-md-6">
                   <h5>RUT</h5>
-                <input type="text" name="inputRut" class="form-control" value="" placeholder="Ingrese RUT" >
+                <input type="text" id="inputRut" class="form-control" value="" placeholder="Ingrese RUT" >
               </div>
 
               <div class="col-12 col-md-6">
                   <h5>NOMBRE</h5>
-                <input type="text" name="inputNombre" class="form-control" value="" placeholder="Ingrese Nombre">
+                <input type="text" id="inputNombre" class="form-control" value="" placeholder="Ingrese Nombre">
               </div>
              
           </div>
@@ -21,12 +21,12 @@
           <div class="row align-items-center my-5">
              <div class="col-12 col-md-6">
                  <h5>APELLIDO</h5>
-                 <input type="text" name="inputApellido" class="form-control" value="" placeholder="Ingrese Apellido">        
+                 <input type="text" id="inputApellido" class="form-control" value="" placeholder="Ingrese Apellido">        
              </div>
 
             <div class="col-12 col-md-6 pt-1">
               <h5>FECHA DE NACIMIENTO</h5>
-              <input type="text" name="inputNacimiento" class="form-control m-auto" value="" placeholder="Ingrese Fecha de Nacimiento">
+              <input type="text" id="inputNacimiento" class="form-control m-auto" value="" placeholder="Ingrese Fecha de Nacimiento">
             </div>
           </div>
       </div>
@@ -35,89 +35,149 @@
           <div class="row align-items-center my-5">
               <div class="col-12 col-md-6">
                 <h5>CARGO</h5>
-                <input type="text" name="inputCargo" class="form-control" value="" placeholder="Ingrese Cargo">
+                <input type="text" id="inputCargo" class="form-control" value="" placeholder="Ingrese Cargo">
               </div>
 
               <div class="col-12 col-md-6">
                   <h5>CONTRATO</h5>
-                 <input type="text" name="inputContrato" class="form-control" value="" placeholder="Ingrese Contrato">
+                 <input type="text" id="inputContrato" class="form-control" value="440022514" placeholder="Ingrese Contrato" selected>
               </div>
           </div>
 
           <div class="col-12 col-md-6">
         <h5>FOTO</h5>
-        <input name="inputFoto" type="file" />
+        <input id="inputFoto" type="file" />
       </div>
      </div>
 <div class="container">
-          <div class="row align-items-right my-5">
-              <div class="col-4">
-                <button type="submit" class="btn btn btn-success shadow">Agregar</button>
-                
-              </div>
 
-         </div>
-</div>
-<div class="container">
-          <div class="row align-items-right my-5">
-              <div class="col-12 col-md-6">
-                <button id="volver" type="submit" class="btn btn-primary">Volver</button>
-              </div>
-          </div>
-</div>
-</form>
-{{!-- 
-<form class="border shadow col-12 col-md-10 col-lg-9 mt-4">
-  <div class="container">
-          <div class="row align-items-center my-5">
-    <div class="input-group col-12 col-md-6">
-{{#each trabajador}}
-     <input type="text" id="rutTrabajador" class="form-control" placeholder="{{this.rut}}" disabled>      
-     <input type="text" id="nombreTrabajador" class="form-control" placeholder="{{this.nombre}}" disabled>
-     <button type="submit" id="modificarTrabajador" class="btn btn btn-outline-warning shadow">Modificar</button>  
-     <button type="submit" id="eliminarTrabajador" class="btn btn btn-outline-danger shadow">Eliminar</button>  
-{{/each}}             
-    </div>  
+  <div class="row align-items-right my-5">
+      <div class="col-4">
+          <button id="volverMod" type="button" class="btn btn-primary">Volver</button>
+          <button id="agre" onclick="agregarTrabajador()" class="btn btn btn-success shadow">Agregar</button>
       </div>
-    </div> --}}
+  </div>
+</div>
 
-<div class="container">
-          <div class="row align-items-right my-5">
-              <div class="col-12 col-md-6">
-                <button id="volverMod" type="button" class="btn btn-primary">Volver</button>
-              </div>
-          </div>
 </div>
-</form>
-</div>
+
+
+{{!-- **************************************************************** --}}
+
+<div id="listadoTrabajadores">
+    <hr />
+    <h2>Listado de Trabajadores</h2>
+    <hr />
+    <div class="container pt-5 w-75">
+      <table class="table table-dark table-hover table-striped border shadow">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Rut</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Accion a Ejecutar</th>
+          </tr>
+        </thead>
+    <tbody>
+
+        {{#each trabajadores}}   
+        <tr>
+          <td>{{this.id_trabajador}}</td>
+          <td>{{this.rut}}</td>
+          <td>{{this.nombre}}</td>
+          <td>{{this.apellido}}</td>
+          <td>
+            <button id="asig" class="btn btn-warning" onclick="asignarTrabajador({{this.rut}})">Editar</button>
+            <button id="elim" class="btn btn-danger" onclick="eliminarTrabajador({{this.id_trabajador}})">Eliminar</button>
+            <button id="modi" class="btn btn btn-success" onclick="modificarTrabajador({{this.id_trabajador}})">Confirmar Modificación</button>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+
+      </table>
+    </div>
+  </div>
 
 <script>
- 
- const form = document.querySelector('form');
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-      const formData = new FormData(form);
-      const { data } = await axios.post('/api/trabajadores', formData,  {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          }
-      });
-      console.log(formData)
-       console.log(data);
-       
-       alert("Registro Creado") 
-       window.location.href = `/adminTrabajador`
-      })
- 
+  async function agregarTrabajador() {
+    try {
+      const id_contrato = document.getElementById('inputContrato').value;
+      const rut = document.getElementById('inputRut').value;
+      const nombre = document.getElementById('inputNombre').value;
+      const apellido = document.getElementById('inputApellido').value;
+      const fecha_nacimiento = document.getElementById('inputNacimiento').value;
+      const cargo = document.getElementById('inputCargo').value;
+      const foto = document.getElementById('inputFoto').value;
+      let payload = { id_contrato, rut, nombre, apellido, fecha_nacimiento, cargo, foto }
+      const { data } = await axios.post("/api/trabajadores", payload);
+      window.location = `/adminTrabajador`
+    } catch (e){console.log("Errrorr")}
+  }
 </script>
 
+<script>
+
+async function asignarTrabajador(rut){
+  try{
+    
+  const { data } = await axios.get("/api/trabajadores/" + rut);
+   document.getElementById('inputRut').value = data.rut;
+   document.getElementById('inputNombre').value = data.nombre;
+   document.getElementById('inputApellido').value = data.apellido;
+   document.getElementById('inputNacimiento').value = data.fecha_nacimiento;
+   document.getElementById('inputCargo').value = data.cargo;
+   document.getElementById('inputFoto').value = data.foto;
+   document.getElementById('inputContrato').value = data.contrato.id_contrato;
+
+        
+  }catch(e){
+    alert("Error al Asignar Informacion")
+  }
+}
+</script>
 
 <script>
-    const volver = document.getElementById("volver")
-    volver.addEventListener("click", async (e) => {
-        e.preventDefault()
-        window.location = `/menuAdmin`
-    });
+  async function eliminarTrabajador(id_trabajador) {
+    try {
+    await axios.delete("/api/trabajador/"+id_trabajador)
+    alert("Trabajador Eliminado Correctamente")
+    window.location = `/adminTrabajador`
+    }catch(e){
+    alert("Error al eliminar trabajador")
+    
+  };
+  };
+</script>
+
+<script>
+  async function modificarTrabajador(id_trabajador) {
+       
+      const id_contrato = document.getElementById('inputContrato').value;
+      const rut = document.getElementById('inputRut').value;
+      const nombre = document.getElementById('inputNombre').value;
+      const apellido = document.getElementById('inputApellido').value;
+      const fecha_nacimiento = document.getElementById('inputNacimiento').value;
+      const cargo = document.getElementById('inputCargo').value;
+      const foto = document.getElementById('inputFoto').value;
+ try{ 
+       await axios.put("/api/trabajador/"+id_trabajador, {
+         id_trabajador, 
+         id_contrato, 
+         rut, 
+         nombre, 
+         apellido, 
+         fecha_nacimiento,
+         cargo,
+         foto
+          });
+        alert("Trabajador Incorporado Correctamente")
+        window.location = `/adminTrabajador`
+       }catch(error){
+         console.log("ERROR HTML")
+       }
+      };
 </script>
 
 <script>
@@ -127,3 +187,7 @@
         window.location = `/menuAdmin`
     });
 </script>
+
+
+
+       

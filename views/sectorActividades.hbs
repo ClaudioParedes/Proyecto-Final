@@ -18,11 +18,15 @@
 
 <div class="container input-group col-12 col-md-6">
     <input type="text" id="txtAgregarActividad" class="form-control" placeholder="Ingrese Nueva Actividad">
-    <button type="submit" id="btnAgregarActividad"  class="btn btn btn-outline-primary shadow px-">Agregar</button>
+    <button type="submit" id="btnAgregarActividad" onclick="agregarActividad()"  class="btn btn btn-outline-primary shadow px-">Agregar</button>
 </div>
 <div class="container input-group col-12 col-md-6 mt-1"> 
-    <input type="text" id="txtEliminarActividad" class="form-control" placeholder="Actividad Desplegada" disabled>
-    <button type="submit" id="btnEliminarActividad" class="btn btn btn-outline-danger shadow">Eliminar</button>  
+    <select id="actividad" class="form-select" aria-label="Default select example">
+                {{#each actividad}}
+                        <option value="{{this.id_actividad}}">{{this.nombre}}</option>
+                {{/each}}
+            </select>   
+    <button type="submit" onclick="eliminarActividad()" id="btnEliminarActividad" class="btn btn btn-outline-danger shadow">Eliminar</button>  
 </div>
           </div>
       </div>
@@ -38,11 +42,15 @@
 <div class="container input-group col-12 col-md-6">
 
     <input type="text" id="txtAgregarNivel" class="form-control" placeholder="Ingrese Nuevo Nivel">
-    <button type="submit" id="btnAgregarNivel" class="btn btn btn-outline-primary shadow px-">Agregar</button>
+    <button type="submit" id="btnAgregarNivel" onclick="agregarNivel()" class="btn btn btn-outline-primary shadow px-">Agregar</button>
 </div>
 <div class="container input-group col-12 col-md-6 mt-1"> 
-        <input type="text" id="txtEliminarNivel" class="form-control" placeholder="Nivel Desplegado" disabled>
-        <button type="submit" id="btnEliminarNivel" class="btn btn btn-outline-danger shadow">Eliminar</button>  
+         <select id="nivel" class="form-select" aria-label="Default select example">
+                {{#each niveles}}
+                        <option value="{{this.id_nivel}}">{{this.nombre}}</option>
+                {{/each}}
+            </select>   
+        <button type="submit" onclick="eliminarNivel()" id="btnEliminarNivel" class="btn btn btn-outline-danger shadow">Eliminar</button>  
 </div>
 
           </div>
@@ -58,11 +66,15 @@
 <div class="container input-group col-12 col-md-6">
 
     <input type="text" id="txtAgregarArea" class="form-control" placeholder="Ingrese Nueva Área">
-    <button type="submit" id="btnAgregarArea" class="btn btn btn-outline-primary shadow px-">Agregar</button>
+    <button type="submit" id="btnAgregarArea" onclick="agregarArea()" class="btn btn btn-outline-primary shadow px-">Agregar</button>
 </div>
 <div class="container input-group col-12 col-md-6 mt-1"> 
-        <input type="text" id="txtEliminarArea" class="form-control" placeholder="Área Desplegada" disabled>
-        <button type="submit" id="btnEliminarArea" class="btn btn btn-outline-danger shadow">Eliminar</button>  
+        <select id="area" class="form-select" aria-label="Default select example">
+                {{#each area}}
+                        <option value="{{this.id_area}}">{{this.nombre}}</option>
+                {{/each}}
+            </select>   
+        <button type="button" id="btnEliminarArea" onclick="eliminarArea()" class="btn btn btn-outline-danger shadow">Eliminar</button>  
 </div>
 </div>     
 
@@ -70,6 +82,106 @@
       </div>
  </div>
 </div>
+
+{{!-- //--------------------------------------------------------//
+//***** AREA *****
+//AGREGAR AREA --}}
+<script>
+async function agregarArea(){
+     try {
+    const nombre = document.getElementById("txtAgregarArea").value;
+    let payload = {nombre};
+    await axios.post("/api/area", payload);
+   alert("Area Agregada Correctamente")
+    window.location = `/sectActividades`;
+   }catch(error){
+        console.log("Error al Agregar Area");
+    };
+};
+</script>
+
+{{!-- //ELIMINAR AREA --}}
+<script>
+  async function eliminarArea() {
+      const id_area = document.getElementById("area").value;
+      const opcion = document.getElementById("area").selectedIndex ;
+      console.log(opcion)
+      console.log(id_area)
+    try {
+    await axios.delete("/api/area/"+id_area)
+    alert("Area Eliminada Correctamente")
+    window.location = `/sectActividades`
+    }catch(e){
+    alert("Error al eliminar Area")
+      };
+  };
+</script>
+
+
+
+{{!----------------------------------------------------------//
+//***** ACTIVIDAD *****
+//AGREGAR ACTIVIDAD --}}
+<script>
+async function agregarActividad(){
+     try {
+    const nombre = document.getElementById("txtAgregarActividad").value;
+    let payload = {nombre};
+    await axios.post("/api/actividad", payload);
+   
+   }catch(error){
+        console.log("ERROR")
+    };
+};
+</script>
+
+<script>
+  async function eliminarActividad() {
+      const id_actividad = document.getElementById("actividad").value;
+      const opcion = document.getElementById("actividad").selectedIndex ;
+      console.log(opcion)
+      console.log(id_actividad)
+    try {
+    await axios.delete("/api/actividad/"+id_actividad)
+    alert("Actividad Eliminada Correctamente")
+    window.location = `/sectActividades`
+    }catch(e){
+    alert("Error al eliminar Actividad")
+      };
+  };
+</script>
+
+{{!----------------------------------------------------------//
+//***** NIVEL *****
+//AGREGAR NIVEL --}}
+<script>
+async function agregarNivel(){
+     try {
+    const nombre = document.getElementById("txtAgregarNivel").value;
+    let payload = {nombre};
+    await axios.post("/api/nivel", payload);
+   
+   }catch(error){
+        console.log("ERROR")
+    };
+};
+</script>
+
+<script>
+  async function eliminarNivel() {
+      const id_nivel = document.getElementById("nivel").value;
+      const opcion = document.getElementById("nivel").selectedIndex ;
+      console.log(opcion)
+      console.log(id_nivel)
+    try {
+    await axios.delete("/api/nivel/"+id_nivel)
+    alert("Nivel Eliminado Correctamente")
+    window.location = `/sectActividades`
+    }catch(e){
+    alert("Error al eliminar Nivel")
+      };
+  };
+</script>
 
 <script>
     const volver = document.getElementById("volver")

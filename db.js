@@ -24,7 +24,7 @@ const getTrabajadorRut = async (rut) =>{
     throw e;
   };
 };
-
+ 
 const editarTrabajador = async ({ id_trabajador, id_contrato, rut, nombre, apellido, fecha_nacimiento, cargo, foto }) => {
   const SQLquery = {
     text: `UPDATE trabajador SET id_contrato=$2, rut=$3, nombre=$4, apellido=$5, fecha_nacimiento=$6, cargo=$7, foto=$8 WHERE id_trabajador = $1 RETURNING *;`,

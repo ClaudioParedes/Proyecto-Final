@@ -160,9 +160,10 @@ async function agregarNivel(){
     const nombre = document.getElementById("txtAgregarNivel").value;
     let payload = {nombre};
     await axios.post("/api/nivel", payload);
-   
-   }catch(error){
-        console.log("ERROR")
+     alert("Nivel Agregado Correctamente")
+    window.location = `/sectActividades`
+    }catch(e){
+    alert("Error al Agregar Nivel")
     };
 };
 </script>
@@ -178,7 +179,7 @@ async function agregarNivel(){
     alert("Nivel Eliminado Correctamente")
     window.location = `/sectActividades`
     }catch(e){
-    alert("Error al eliminar Nivel")
+    alert("Error al Eliminar Nivel")
       };
   };
 </script>

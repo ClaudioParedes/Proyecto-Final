@@ -58,7 +58,7 @@ router.get("/listaTrabajadores", async (req, res) => {
    const trabajadores = await db.getTrabajadores();
    res.render("listaTrabajadores", { trabajadores, requiresAuth: true });
 });
-
+ 
 //Administracion de Actividades y Sector
 router.get("/sectActividades", async (req, res) => {
    const area = await db.getArea()
